@@ -1,8 +1,10 @@
 import { createMachine } from "xstate";
-import { feedbackState } from "./state";
+import { zenproState } from "./state";
 import addTest from "./utils";
 import { stateTests } from "./tests";
+import { guards } from "./guard";
 
-const feedbackMachine = createMachine(addTest(feedbackState, stateTests));
+// const feedbackMachine = createMachine(addTest(zenproState, stateTests), guards);
+const zenproMachine = createMachine(zenproState, guards);
 
-export default feedbackMachine;
+export default zenproMachine;

@@ -1,12 +1,12 @@
-import feedbackModel from "../../model";
+import model from "../../model";
 
-const testPlans = feedbackModel.getSimplePathPlans();
+const testPlans = model.getSimplePathPlans();
 describe("feedback machine", () => {
   testPlans.forEach((plan) => {
     describe(plan.description, () => {
       plan.paths.forEach((path) => {
         it(path.description, () => {
-          return cy.visit("http://localhost:3000").then(() => {
+          return cy.visit("https://zenpro.id").then(() => {
             return path.test(cy); // Execute the test path
           }); // Visit your local site
         });
@@ -16,7 +16,7 @@ describe("feedback machine", () => {
 
   describe("coverage", () => {
     it("should pass", () => {
-      feedbackModel.testCoverage();
+      model.testCoverage();
     });
   });
 });
