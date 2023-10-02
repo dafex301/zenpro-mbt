@@ -5,6 +5,6 @@ import { stateTests } from "./tests";
 import { guards } from "./guard";
 
 // const feedbackMachine = createMachine(addTest(zenproState, stateTests), guards);
-const zenproMachine = createMachine(zenproState, guards);
+const zenproMachine = createMachine(addTest(zenproState, stateTests), guards);
 
 export default zenproMachine;

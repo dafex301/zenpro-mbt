@@ -1,6 +1,5 @@
 import { createModel } from "@xstate/test";
 import zenproMachine from "./machine";
-import { generateRandomString } from "./utils";
 
 const model = createModel(zenproMachine).withEvents({
   HOME: () => cy.get("button").contains("Home").click(),
@@ -13,9 +12,18 @@ const model = createModel(zenproMachine).withEvents({
   LOGOUT: () => cy.get("button").contains("Keluar").click(),
 
   LEARN: () => cy.get("button").contains("Belajar").click(),
-  PRACTICE: () => cy.get("button").contains("Latihan").click(),
 
-  FINISH: () => cy.get("button").contains("Selesai").click(),
+  // TODO: maybe delete the waiting time if it's already stable
+  PRACTICE: () => {
+    cy.wait(2000);
+    cy.get("button").contains("Latihan").click();
+  },
+
+  // TODO: maybe delete the waiting time if it's already stable
+  FINISH: () => {
+    cy.wait(2000);
+    cy.get("button").contains("Selesai").click();
+  },
   NEXT: () => cy.get("button").contains("Selanjutnya").click(),
 
   CONTINUE: () => cy.get("button").contains("Lanjutkan Training").click(),
@@ -33,12 +41,13 @@ const model = createModel(zenproMachine).withEvents({
       cy.get("a").contains("Lupa Kata Sandi?").click();
     }),
 
-  LOGGING_IN: () =>
+  LOGGING_IN: () => {
     cy.origin("https://keycloak.zenius.net", () => {
       cy.get("#username").type("lfahrel@gmail.com");
       cy.get("#password").type("12345678");
       cy.get("#password").type("{enter}");
-    }),
+    });
+  },
 
   LOGIN_SIGN_UP: () =>
     cy.origin("https://keycloak.zenius.net", () =>
@@ -46,7 +55,7 @@ const model = createModel(zenproMachine).withEvents({
     ),
   SIGNING_UP: () =>
     cy.origin("https://keycloak.zenius.net", () => {
-      cy.get("#firstname").type("Fahrel MBT");
+      cy.get("#firstName").type("Fahrel MBT");
       cy.get("#email").type("12345678@maildrop.cc");
       cy.get("#password").type("12345678");
       cy.get("#password-confirm").type("12345678");

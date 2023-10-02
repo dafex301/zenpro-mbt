@@ -1,6 +1,6 @@
 export const zenproState = {
   id: "zenpro",
-  initial: "notAuthenticated",
+  initial: "unauthenticated",
   states: {
     authenticated: {
       id: "authenticated",
@@ -31,7 +31,7 @@ export const zenproState = {
         homePage: {},
         profilePage: {
           on: {
-            LOGOUT: "#notAuthenticated",
+            LOGOUT: "#unauthenticated",
           },
         },
         materiPage: {
@@ -72,11 +72,11 @@ export const zenproState = {
         // },
       },
     },
-    notAuthenticated: {
-      id: "notAuthenticated",
-      initial: "homePage",
+    unauthenticated: {
+      id: "unauthenticated",
+      initial: "initHomePage",
       states: {
-        homePage: {
+        initHomePage: {
           on: {
             LOGIN: "loginPage",
           },
