@@ -33,7 +33,7 @@ const machine = createMachine(
         states: {
           homePage: {
             on: {
-              SELECT_PELATIHAN: "materiPage",
+              SELECT_MATERI: "materiPage",
             },
           },
           profilePage: {
@@ -195,7 +195,7 @@ const machine = createMachine(
           },
           signUpPage: {
             on: {
-              LOGIN: "loginPage",
+              LOGIN_SIGN_UP: "loginPage",
               SIGNING_UP: "verifyPage",
             },
           },

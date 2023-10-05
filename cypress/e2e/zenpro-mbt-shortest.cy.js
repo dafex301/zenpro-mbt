@@ -1,11 +1,14 @@
 import model from "../../model";
 
-const testPlans = model.getSimplePathPlans();
-describe("feedback machine", () => {
+const testPlans = model.getShortestPathPlans();
+
+let count = 0;
+
+describe("ZenPro MBT", () => {
   testPlans.forEach((plan) => {
     describe(plan.description, () => {
       plan.paths.forEach((path) => {
-        it(path.description, () => {
+        it(`[${++count}] ${path.description}`, () => {
           return cy.visit("https://zenpro.id").then(() => {
             return path.test(cy); // Execute the test path
           }); // Visit your local site
@@ -13,6 +16,8 @@ describe("feedback machine", () => {
       });
     });
   });
+
+  console.log(`${count} test cases generated`);
 
   describe("coverage", () => {
     it("should pass", () => {
