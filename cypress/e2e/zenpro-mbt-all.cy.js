@@ -1,4 +1,4 @@
-import model from "../../model";
+import model from "../../machines/full/model";
 
 const testPlans = model.getSimplePathPlans();
 

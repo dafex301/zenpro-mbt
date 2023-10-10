@@ -1,6 +1,6 @@
-import model from "../../machines/full/model";
+import model from "../../machines/auth/model";
 
-const testPlans = model.getShortestPathPlans();
+const testPlans = model.getSimplePathPlans();
 
 let count = 0;
 

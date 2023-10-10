@@ -1,7 +1,4 @@
-import { createModel } from "@xstate/test";
-import zenproMachine from "./machine";
-
-const model = createModel(zenproMachine).withEvents({
+const events = {
   HOME: () => cy.get("button").contains("Home").click(),
   PROFILE: () => cy.get("button").contains("Fahrel Gibran").click(),
   MATERI: () => cy.get("button").contains("Katalog Skills").click(),
@@ -38,8 +35,10 @@ const model = createModel(zenproMachine).withEvents({
 
   EDIT_PASSWORD: () => cy.get("button").contains("Edit Password").click(),
   SAVE_PASSWORD: () => {
-    cy.get("input").contains("Masukan Kata Sandi").first().type("12345678");
-    cy.get("input").contains("Masukan Kata Sandi").last().type("12345678");
+    cy.get(":nth-child(4) > .MuiInputBase-root > .MuiInputBase-input").type(
+      "12345678"
+    );
+    cy.get(".mt-4 > .MuiInputBase-root > .MuiInputBase-input").type("12345678");
     cy.get("button").contains("Save").click();
   },
   PASSWORD_SAVED: () => cy.wait(1000),
@@ -51,7 +50,7 @@ const model = createModel(zenproMachine).withEvents({
   SUBS_90: () => cy.get("div").contains("90 days").click(),
   SUBS_180: () => cy.get("div").contains("180 days").click(),
   SUBS_365: () => cy.get("div").contains("365 days").click(),
-  BUY_SUBS_BTN: () => cy.get("button").contains("Beli").click(),
+  BUY_SUBS_BTN: () => cy.get("button.mui-1c8aokk").contains("Beli").click(),
 
   LEARN: () => cy.get("button").contains("Reading Materials").click(),
 
@@ -113,16 +112,6 @@ const model = createModel(zenproMachine).withEvents({
       cy.get("#username").type("Forget");
       cy.get("#username").type("{enter}");
     }),
-});
+};
 
-export default model;
-
-// VALID_SEARCH: {
-//   cases: Array(2)
-//     .fill()
-//     .map(() => ({ value: generateRandomString() })),
-//   exec: (page, event) => {
-//     cy.get("textarea").type(event.value);
-//     cy.get("button").contains("Submit").click();
-//   },
-// },
+export default events;

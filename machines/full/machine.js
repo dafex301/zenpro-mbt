@@ -220,3 +220,5 @@ const machine = createMachine(
     },
   }
 );
+
+export default machine;
